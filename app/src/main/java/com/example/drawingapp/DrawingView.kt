@@ -51,7 +51,7 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
 
         if (!mDrawPath!!.isEmpty) {
             mDrawPaint!!.strokeWidth = mDrawPath!!.brushThickness
-            mDrawPaint!!.color = mDrawPaint!!.color
+            mDrawPaint!!.color = mDrawPath!!.color
             canvas.drawPath(mDrawPath!!, mDrawPaint!!)
         }
     }
@@ -86,6 +86,11 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
             TypedValue.COMPLEX_UNIT_DIP, newSize, resources.displayMetrics
         )
         mDrawPaint!!.strokeWidth = mBrushSize
+    }
+
+    fun setColor(newColor: String) {
+        color = Color.parseColor(newColor)
+        mDrawPaint!!.color = color
     }
 
     internal inner class CustomPath(var color: Int, var brushThickness: Float) : Path() {

@@ -3,6 +3,7 @@ package com.example.drawingapp
 import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageButton
 import androidx.core.content.ContextCompat
 import androidx.core.view.get
@@ -21,7 +22,9 @@ class MainActivity : AppCompatActivity() {
         drawing_view.setSizeForBrush(20.toFloat())
 
         mImageButtonCurrentPaint = ll_paint_colors[4] as ImageButton
-        mImageButtonCurrentPaint!!.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.pallet_selected))
+        mImageButtonCurrentPaint!!.setImageDrawable(
+            ContextCompat.getDrawable(this, R.drawable.pallet_selected)
+        )
 
         ib_brush.setOnClickListener { showBrushSizeChooserDialog() }
     }
@@ -47,5 +50,21 @@ class MainActivity : AppCompatActivity() {
             brushDialog.dismiss()
         }
         brushDialog.show()
+    }
+
+    fun paintClicked(view: View) {
+        if (view !== mImageButtonCurrentPaint) {
+            val imageButton = view as ImageButton
+
+            val colorTag = imageButton.tag.toString()
+            drawing_view.setColor(colorTag)
+            imageButton.setImageDrawable(
+                ContextCompat.getDrawable(this, R.drawable.pallet_selected)
+            )
+            mImageButtonCurrentPaint!!.setImageDrawable(
+                ContextCompat.getDrawable(this, R.drawable.pallet_normal)
+            )
+            mImageButtonCurrentPaint = view
+        }
     }
 }

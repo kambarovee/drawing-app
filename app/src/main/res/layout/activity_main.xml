@@ -78,6 +78,16 @@
             android:src="@drawable/pallet_normal"
             android:tag="@color/black" />
 
+        <ImageButton
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_margin="2dp"
+            android:background="@color/white"
+            android:contentDescription="color pallet"
+            android:onClick="paintClicked"
+            android:src="@drawable/pallet_normal"
+            android:tag="@color/white" />
+
     </LinearLayout>
 
 
